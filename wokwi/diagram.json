@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "author": "atomQUEST 2026 ComfortLoop Team",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32",
+      "id": "esp32",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "chip-bme280",
+      "id": "bme280",
+      "top": -120,
+      "left": -120,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "ld2410_sim",
+      "top": -100,
+      "left": 160,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay1",
+      "top": 180,
+      "left": 160,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "fan_pwm_led",
+      "top": 180,
+      "left": -100,
+      "attrs": {
+        "color": "orange",
+        "label": "Fan Speed PWM Indicator (GPIO 18)"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 240,
+      "left": -80,
+      "attrs": {
+        "value": "330"
+      }
+    }
+  ],
+  "connections": [
+    [ "esp32:GND.1", "bme280:GND", "black", [ "h0" ] ],
+    [ "esp32:3V3", "bme280:VIN", "red", [ "h0" ] ],
+    [ "esp32:21", "bme280:SDA", "green", [ "h0" ] ],
+    [ "esp32:22", "bme280:SCL", "gold", [ "h0" ] ],
+
+    [ "esp32:3V3", "ld2410_sim:1", "red", [ "h0" ] ],
+    [ "esp32:4", "ld2410_sim:2", "orange", [ "h0" ] ],
+    [ "esp32:GND.2", "ld2410_sim:3", "black", [ "h0" ] ],
+
+    [ "esp32:5V", "relay1:VCC", "red", [ "h0" ] ],
+    [ "esp32:GND.2", "relay1:GND", "black", [ "h0" ] ],
+    [ "esp32:23", "relay1:IN", "purple", [ "h0" ] ],
+
+    [ "esp32:18", "fan_pwm_led:A", "orange", [ "h0" ] ],
+    [ "fan_pwm_led:C", "r1:1", "black", [ "h0" ] ],
+    [ "r1:2", "esp32:GND.1", "black", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,5 @@
+Adafruit BME280 Library
+Adafruit Unified Sensor
+Adafruit INA219
+PubSubClient
+
