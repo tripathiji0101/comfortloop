@@ -153,6 +153,7 @@ def render_and_center_view(shape, proj_dir, box_w, box_h):
     """
     Renders projection view with CadQuery getSVG and calculates the exact
     coordinate offset required to center the geometry dead-center in box_w x box_h.
+    Supports standard and scientific notation (e.g. 1e-07, -1.25e-05).
     """
     import re
     shape_obj = shape.val() if hasattr(shape, "val") else shape
@@ -170,8 +171,9 @@ def render_and_center_view(shape, proj_dir, box_w, box_h):
         }
     )
 
-    m_scale = re.search(r"scale\(([-0-9.]+),\s*([-0-9.]+)\)", raw_svg)
-    m_trans = re.search(r"translate\(([-0-9.]+),\s*([-0-9.]+)\)", raw_svg)
+    num_pat = r"[-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?"
+    m_scale = re.search(rf"scale\(({num_pat}),\s*({num_pat})\)", raw_svg)
+    m_trans = re.search(rf"translate\(({num_pat}),\s*({num_pat})\)", raw_svg)
     if not m_scale or not m_trans:
         return "<g></g>"
 
@@ -181,7 +183,7 @@ def render_and_center_view(shape, proj_dir, box_w, box_h):
     d_attrs = re.findall(r'd="([^"]+)"', raw_svg)
     xs, ys = [], []
     for d in d_attrs:
-        pts = re.findall(r"([-0-9.]+),([-0-9.]+)", d)
+        pts = re.findall(rf"({num_pat})[,\s]+({num_pat})", d)
         for x_str, y_str in pts:
             x, y = float(x_str), float(y_str)
             xs.append(sx * (x + tx))

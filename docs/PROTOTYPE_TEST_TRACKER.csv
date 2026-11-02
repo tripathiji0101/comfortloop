@@ -1,0 +1,40 @@
+Test_ID,Component,Test_Name,Required_Equipment,Planned_Date,Actual_Result,Status,Evidence_Location,Corrective_Action,Retest_Status
+VAL-MEC-001.1,ComfortLoop_Main_Enclosure,Clevis Internal Gap Width,Digital Vernier Caliper (0.01mm),2026-11-05,,NOT TESTED,docs/evidence/VAL-MEC-001/gap_caliper.png,,NONE
+VAL-MEC-001.2,ComfortLoop_Radar_Housing,Trunnion Outer Width Across Ears,Digital Vernier Caliper (0.01mm),2026-11-05,,NOT TESTED,docs/evidence/VAL-MEC-001/trunnion_caliper.png,,NONE
+VAL-MEC-001.3,ComfortLoop_Radar_Housing,Angular Sweep Operating Range (-20 to -10 deg),Digital Inclinometer (0.1 deg),2026-11-05,,NOT TESTED,docs/evidence/VAL-MEC-001/angle_sweep.png,,NONE
+VAL-MEC-001.4,ComfortLoop_Radar_Housing,M3 Pivot Bolt Clamping Torque & Plastic Stress,Torque Screwdriver (0.1-1.0 Nm),2026-11-05,,NOT TESTED,docs/evidence/VAL-MEC-001/torque_inspection.png,,NONE
+VAL-MEC-001.5,ComfortLoop_Radar_Housing,Radar Angle Stability Under Full-Speed Fan Vibration,Tachometer + Inclinometer,2026-11-05,,NOT TESTED,docs/evidence/VAL-MEC-001/vibration_stability.csv,,NONE
+VAL-SAF-002.1,ComfortLoop_Fan_Grille,Concentric Ring Gap Widths (5 Locations),Pin Gauges + Caliper Depth Rod,2026-11-06,,NOT TESTED,docs/evidence/VAL-SAF-002/pin_gauges.png,,NONE
+VAL-SAF-002.2,ComfortLoop_Fan_Grille,Grille Axial Deflection Under 20N Force,Push-Pull Force Gauge + Dial Indicator,2026-11-06,,NOT TESTED,docs/evidence/VAL-SAF-002/deflection_curve.png,,NONE
+VAL-SAF-002.3,ComfortLoop_Fan_Grille,Blade Setback Distance From Outer Face,Digital Caliper Depth Probe,2026-11-06,,NOT TESTED,docs/evidence/VAL-SAF-002/setback_check.png,,NONE
+VAL-SAF-002.4,ComfortLoop_Fan_Grille,IEC Test Probe B Adult Finger Exclusion Test,IEC Jointed Test Finger + 20N Gauge,2026-11-06,,NOT TESTED,docs/evidence/VAL-SAF-002/iec_probe_b.png,,NONE
+VAL-SAF-002.5,ComfortLoop_Fan_Grille,IEC Probe 19 Child Finger Safety Penetration Check,IEC Probe 19 (5.6mm) + 2.5N Gauge,2026-11-06,,NOT TESTED,docs/evidence/VAL-SAF-002/iec_probe_19.png,,NONE
+VAL-MEC-003.1,ComfortLoop_Fan_Duct,Foot-to-Shelf 40mm Mounting Hole Pitch,Digital Vernier Caliper (0.01mm),2026-11-07,,NOT TESTED,docs/evidence/VAL-MEC-003/pitch_measurement.png,,NONE
+VAL-MEC-003.2,ComfortLoop_Fan_Duct,Duct Foot Contact Flatness & Warp,Granite Surface Plate + Feeler Gauges,2026-11-07,,NOT TESTED,docs/evidence/VAL-MEC-003/foot_flatness.png,,NONE
+VAL-MEC-003.3,ComfortLoop_Fan_Duct,M4 x 8mm Screw Tip Protrusion Below Baseplane,Machinist Square + Feeler Gauges,2026-11-07,,NOT TESTED,docs/evidence/VAL-MEC-003/screw_protrusion.png,,NONE
+VAL-MEC-003.4,ComfortLoop_Main_Enclosure,M4 Heat-Set Insert Retention & Stripping Torque,Torque Screwdriver (0.5-2.5 Nm),2026-11-07,,NOT TESTED,docs/evidence/VAL-MEC-003/insert_torque.png,,NONE
+VAL-MEC-003.5,ComfortLoop_Fan_Duct,Impeller Radial Clearance in Duct Throat,Feeler Gauges (0.1-2.0mm),2026-11-07,,NOT TESTED,docs/evidence/VAL-MEC-003/throat_clearance.png,,NONE
+VAL-THM-004.1,ComfortLoop_BME_Snorkel_Pod,Unpowered Initial Baseline Sensor Offset,4-Wire PT100 RTD Logger (+/-0.1C),2026-11-08,,NOT TESTED,docs/evidence/VAL-THM-004/baseline_offset.csv,,NONE
+VAL-THM-004.2,ComfortLoop_BME_Snorkel_Pod,Sensor Thermal Rise with Fan OFF (120 min),PT100 Reference + BME280 I2C,2026-11-08,,NOT TESTED,docs/evidence/VAL-THM-004/thermal_fan_off.csv,,NONE
+VAL-THM-004.3,ComfortLoop_BME_Snorkel_Pod,Sensor Thermal Rise with Fan Active (120 min),PT100 Reference + BME280 I2C,2026-11-08,,NOT TESTED,docs/evidence/VAL-THM-004/thermal_fan_on.csv,,NONE
+VAL-THM-004.4,ComfortLoop_BME_Snorkel_Pod,Snorkel Conduit Thermal Conduction Gradient,FLIR Thermal Imaging Camera,2026-11-08,,NOT TESTED,docs/evidence/VAL-THM-004/flir_conduit.png,,NONE
+VAL-AER-005.1,ComfortLoop_Fan120_BLDC,PWM Duty Cycle vs Rotational Speed (RPM),Laser Tachometer + ESP32 Pulse Counter,2026-11-09,,NOT TESTED,docs/evidence/VAL-AER-005/pwm_vs_rpm.csv,,NONE
+VAL-AER-005.2,ComfortLoop_Fan120_BLDC,Discharge Air Velocity at 9 Grid Points,Vane Anemometer (0.01 m/s),2026-11-09,,NOT TESTED,docs/evidence/VAL-AER-005/velocity_profile.csv,,NONE
+VAL-AER-005.3,ComfortLoop_Fan120_BLDC,Volumetric Airflow Delivery (CFM Estimation),Calculated from Traverse Velocity,2026-11-09,,NOT TESTED,docs/evidence/VAL-AER-005/cfm_calculation.csv,,NONE
+VAL-AER-005.4,ComfortLoop_Fan120_BLDC,Fan Motor Electrical Power Consumption (W),TI INA219 Telemetry Log,2026-11-09,,NOT TESTED,docs/evidence/VAL-AER-005/power_curve.csv,,NONE
+VAL-AER-005.5,ComfortLoop_Fan120_BLDC,Acoustic Sound Pressure Level (dBA at 1.0m),Type 2 Sound Level Meter (A-weighted),2026-11-09,,NOT TESTED,docs/evidence/VAL-AER-005/sound_levels.csv,,NONE
+VAL-AER-005.6,ComfortLoop_Fan_Duct,Flow Asymmetry Induced by Rear Wall Shadow,Top vs Bottom Half Anemometer Grid,2026-11-09,,NOT TESTED,docs/evidence/VAL-AER-005/wall_obstruction.csv,,NONE
+VAL-RAD-006.1,ComfortLoop_Radar_Housing,Bare-Board Baseline Human Presence Detection,LD2410 UART PC Diagnostic Tool,2026-11-10,,NOT TESTED,docs/evidence/VAL-RAD-006/bare_baseline.csv,,NONE
+VAL-RAD-006.2,ComfortLoop_Radar_Housing,Stationary Target Signal Attenuation in Radome,LD2410 UART Energy Monitor,2026-11-10,,NOT TESTED,docs/evidence/VAL-RAD-006/radome_attenuation.csv,,NONE
+VAL-RAD-006.3,ComfortLoop_Radar_Housing,Micro-Motion Sensitivity at 1.5m Distance,LD2410 Energy Gate 1-3 Telemetry,2026-11-10,,NOT TESTED,docs/evidence/VAL-RAD-006/micromotion_test.csv,,NONE
+VAL-RAD-006.4,ComfortLoop_Radar_Housing,Azimuth Detection Envelope (+/-45 deg),Laser Distance Meter + Angle Grid,2026-11-10,,NOT TESTED,docs/evidence/VAL-RAD-006/azimuth_envelope.png,,NONE
+VAL-RAD-006.5,ComfortLoop_Radar_Housing,False Positive Trigger Rate in Unoccupied Room,15-Minute Automated UART Event Log,2026-11-10,,NOT TESTED,docs/evidence/VAL-RAD-006/false_positives.csv,,NONE
+VAL-RAD-006.6,ComfortLoop_Radar_Housing,Rotating Fan Blade Radar Reflection Immunity,LD2410 Telemetry with Fan at 100% PWM,2026-11-10,,NOT TESTED,docs/evidence/VAL-RAD-006/fan_interference.csv,,NONE
+VAL-SYS-007.1,ComfortLoop_Assembly,Tabletop Planar Stability & Corner Rocking,Granite Surface Plate + Feeler Gauges,2026-11-11,,NOT TESTED,docs/evidence/VAL-SYS-007/surface_flatness.png,,NONE
+VAL-SYS-007.2,ComfortLoop_Assembly,Fastener Protrusion Check Below Enclosure Base,Precision Machinist Square,2026-11-11,,NOT TESTED,docs/evidence/VAL-SYS-007/base_flush_check.png,,NONE
+VAL-SYS-007.3,ComfortLoop_Assembly,Internal Wiring Harness Strain Relief & Clearance,Visual Inspection + Caliper,2026-11-11,,NOT TESTED,docs/evidence/VAL-SYS-007/wiring_harness.png,,NONE
+VAL-SYS-007.4,ComfortLoop_Assembly,Dielectric High-Voltage Partition Creepage/Clearance,Digital Vernier Caliper (0.01mm),2026-11-11,,NOT TESTED,docs/evidence/VAL-SYS-007/creepage_barrier.png,,NONE
+VAL-SYS-007.5,ComfortLoop_Assembly,4-Hour Continuous Automated System Soak Test,Automated Test Harness + Datalogger,2026-11-11,,NOT TESTED,docs/evidence/VAL-SYS-007/soak_test_telemetry.csv,,NONE
+VAL-SYS-007.6,ComfortLoop_Assembly,Enclosure Surface & Component Thermal Map,FLIR Thermal Imaging Camera,2026-11-11,,NOT TESTED,docs/evidence/VAL-SYS-007/flir_system_map.png,,NONE
+VAL-SYS-007.7,ComfortLoop_Assembly,Serviceability: Cover Removal Time Under 60s,Digital Stopwatch,2026-11-11,,NOT TESTED,docs/evidence/VAL-SYS-007/service_timing.png,,NONE
+

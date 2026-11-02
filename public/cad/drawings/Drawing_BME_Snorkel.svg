@@ -112,7 +112,7 @@
   <!-- Front View -->
   <g transform="translate(60, 425)">
     <rect width="360" height="290" fill="#fdfdfd" stroke="#e2e8f0" stroke-width="0.5" rx="4" />
-    <g transform="translate(69.30, 62.93)"><g transform="scale(10.063636363636363, -10.063636363636363)   translate(11.0,-8.3000001)" stroke-width="0.8"  fill="none">
+    <g transform="translate(69.30, 61.47)"><g transform="scale(10.063636363636363, -10.063636363636363)   translate(11.0,-8.3000001)" stroke-width="0.8"  fill="none">
        <!-- hidden lines -->
        <g  stroke="rgb(160,160,160)" fill="none" stroke-dasharray="0.8,0.8" >
 

@@ -73,7 +73,7 @@ export const PARTS_DATA: PartMetadata[] = [
     notes: 'Features 1.5mm interlocking perimeter lip for dust and ingress prevention.',
     nominalPos: [0, 0, 39.0],
     nominalRot: [0, 0, 0],
-    explodedOffset: [0, 0, 75.0],
+    explodedOffset: [0, 0, 95.0],
   },
   {
     id: 'esp32_devkit',
@@ -90,7 +90,7 @@ export const PARTS_DATA: PartMetadata[] = [
     notes: 'Primary MCU executing dual-core RTOS control loop, apparent temperature filter, and mmWave UART protocol.',
     nominalPos: [-35.0, -15.0, 9.0],
     nominalRot: [0, 0, 0],
-    explodedOffset: [0, 0, 40.0],
+    explodedOffset: [0, 0, 52.0],
   },
   {
     id: 'ina219_sensor',
@@ -107,7 +107,7 @@ export const PARTS_DATA: PartMetadata[] = [
     notes: 'Monitors real-time 12V bus voltage, fan current, and power consumption with 12-bit ADC accuracy.',
     nominalPos: [38.0, -22.0, 9.0],
     nominalRot: [0, 0, 0],
-    explodedOffset: [0, 0, 40.0],
+    explodedOffset: [0, 0, 52.0],
   },
   {
     id: 'relay_module',
@@ -124,7 +124,7 @@ export const PARTS_DATA: PartMetadata[] = [
     notes: 'Auxiliary zero-power isolation relay switching peripheral loads under SELV/Class II isolation.',
     nominalPos: [38.0, 22.0, 9.0],
     nominalRot: [0, 0, 0],
-    explodedOffset: [0, 0, 40.0],
+    explodedOffset: [0, 0, 52.0],
   },
   {
     id: 'radar_housing',
@@ -141,7 +141,7 @@ export const PARTS_DATA: PartMetadata[] = [
     notes: 'Dielectric-optimized 1.5mm front face for zero 24GHz mmWave radar beam attenuation.',
     nominalPos: [0, -68.89, 25.58],
     nominalRot: [-105 * (Math.PI / 180), 0, 0],
-    explodedOffset: [0, -50.0, 0],
+    explodedOffset: [0, -60.0, -10.0],
   },
   {
     id: 'ld2410_sensor',
@@ -158,7 +158,7 @@ export const PARTS_DATA: PartMetadata[] = [
     notes: 'FMCW 24GHz presence sensor detecting micro-motions and tracking occupant occupancy.',
     nominalPos: [0, -68.89, 25.58],
     nominalRot: [-105 * (Math.PI / 180), 0, 0],
-    explodedOffset: [0, -75.0, 0],
+    explodedOffset: [0, -90.0, -20.0],
   },
   {
     id: 'bme_snorkel',
@@ -260,7 +260,7 @@ export const PARTS_DATA: PartMetadata[] = [
     notes: 'Secures top lid with counterbored flush fit into chassis corner bosses.',
     nominalPos: [0, 0, 42.0],
     nominalRot: [Math.PI, 0, 0],
-    explodedOffset: [0, 0, 110.0],
+    explodedOffset: [0, 0, 130.0],
   },
   {
     id: 'duct_screws',
@@ -310,6 +310,7 @@ export const CadViewer: React.FC = () => {
     return init;
   });
   const [wireframeMode, setWireframeMode] = useState<boolean>(false);
+  const [webGlError, setWebGlError] = useState<string | null>(null);
 
   // Three.js References
   const sceneRef = useRef<THREE.Scene | null>(null);
@@ -348,7 +349,15 @@ export const CadViewer: React.FC = () => {
     cameraRef.current = camera;
 
     // 3. Renderer with antialiasing and shadow support
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    } catch (e: any) {
+      console.error('WebGLRenderer initialization failed:', e);
+      setWebGlError(e?.message || 'WebGL is not supported or hardware acceleration is disabled in your browser.');
+      setLoading(false);
+      return;
+    }
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
@@ -732,7 +741,10 @@ export const CadViewer: React.FC = () => {
                   <Box size={13} /> Assembled View
                 </button>
                 <button
-                  onClick={() => setViewMode('exploded')}
+                  onClick={() => {
+                    setViewMode('exploded');
+                    setCameraView('iso');
+                  }}
                   className={`btn ${viewMode === 'exploded' ? 'btn-primary' : 'btn-secondary'}`}
                   style={{ fontSize: '0.725rem', padding: '0.3rem 0.75rem' }}
                 >
@@ -921,7 +933,7 @@ export const CadViewer: React.FC = () => {
               <div ref={mountRef} style={{ width: '100%', height: '100%', outline: 'none' }} />
 
               {/* Loading Overlay */}
-              {loading && (
+              {loading && !webGlError && (
                 <div
                   style={{
                     position: 'absolute',
@@ -948,6 +960,36 @@ export const CadViewer: React.FC = () => {
                   />
                   <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                     Loading OpenCASCADE B-Rep Geometries ({loadProgress}%)...
+                  </div>
+                </div>
+              )}
+
+              {/* WebGL Error Fallback Overlay */}
+              {webGlError && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'rgba(247, 242, 234, 0.96)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '2rem',
+                    textAlign: 'center',
+                    gap: '0.85rem',
+                    zIndex: 10,
+                  }}
+                >
+                  <Info size={36} color="#d97706" />
+                  <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+                    3D WebGL Acceleration Notice
+                  </div>
+                  <div style={{ fontSize: '0.825rem', color: 'var(--text-secondary)', maxWidth: '440px', lineHeight: 1.5 }}>
+                    {webGlError}
+                  </div>
+                  <div style={{ fontSize: '0.775rem', color: '#b45309', fontWeight: 600 }}>
+                    Tip: Switch to the &quot;2D Technical Blueprints (6)&quot; tab above for high-resolution vector orthographic drawings.
                   </div>
                 </div>
               )}
@@ -1015,7 +1057,11 @@ export const CadViewer: React.FC = () => {
 
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                   <button
-                    onClick={() => setViewMode(viewMode === 'exploded' ? 'assembled' : 'exploded')}
+                    onClick={() => {
+                      const next = viewMode === 'exploded' ? 'assembled' : 'exploded';
+                      setViewMode(next);
+                      if (next === 'exploded') setCameraView('iso');
+                    }}
                     className="btn btn-secondary"
                     style={{ fontSize: '0.725rem', padding: '0.25rem 0.65rem' }}
                   >
@@ -1212,7 +1258,7 @@ export const CadViewer: React.FC = () => {
               </div>
 
               <a
-                href={`/cad/drawings/${selectedDrawingId}.svg`}
+                href={`/cad/drawings/${selectedDrawingId}.svg?v=20261102`}
                 download={`${selectedDrawingId}.svg`}
                 className="btn btn-secondary"
                 style={{ fontSize: '0.75rem', padding: '0.35rem 0.75rem' }}
@@ -1224,7 +1270,7 @@ export const CadViewer: React.FC = () => {
 
             <div style={{ width: '100%', minHeight: '650px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#f8fafc', borderRadius: '8px', padding: '1rem', overflow: 'hidden' }}>
               <img
-                src={`/cad/drawings/${selectedDrawingId}.svg`}
+                src={`/cad/drawings/${selectedDrawingId}.svg?v=20261102`}
                 alt={selectedDrawingId}
                 style={{ width: '100%', height: 'auto', maxHeight: '720px', objectFit: 'contain', boxShadow: '0 4px 15px rgba(0,0,0,0.08)' }}
               />
